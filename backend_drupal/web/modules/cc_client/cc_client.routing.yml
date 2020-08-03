@@ -1,0 +1,7 @@
+entity.client.settings:
+  path: 'admin/structure/client'
+  defaults:
+    _form: '\Drupal\cc_client\Form\ClientSettingsForm'
+    _title: 'Client'
+  requirements:
+    _permission: 'administer client'

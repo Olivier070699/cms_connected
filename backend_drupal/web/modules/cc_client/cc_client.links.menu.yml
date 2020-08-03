@@ -1,0 +1,10 @@
+entity.client.settings:
+  title: Client
+  description: Configure a Client entity type
+  route_name:  entity.client.settings
+  parent: system.admin_structure
+entity.client.collection:
+  title: Clients
+  description: List of clients
+  route_name: entity.client.collection
+  parent: system.admin_content

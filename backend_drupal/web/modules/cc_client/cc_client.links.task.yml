@@ -1,0 +1,22 @@
+entity.client.settings:
+  title: Settings
+  route_name: entity.client.settings
+  base_route: entity.client.settings
+entity.client.view:
+  title: View
+  route_name: entity.client.canonical
+  base_route: entity.client.canonical
+entity.client.edit_form:
+  title: Edit
+  route_name: entity.client.edit_form
+  base_route: entity.client.canonical
+entity.client.delete_form:
+  title: Delete
+  route_name: entity.client.delete_form
+  base_route: entity.client.canonical
+  weight: 10
+entity.client.collection:
+  title: Client
+  route_name: entity.client.collection
+  base_route: system.admin_content
+  weight: 10

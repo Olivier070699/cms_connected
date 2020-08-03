@@ -1,0 +1,13 @@
+administer client:
+  title: 'Administer client settings'
+  restrict access: true
+access client overview:
+  title: 'Access client overview page'
+delete client:
+  title: Delete client
+create client:
+  title: Create client
+view client:
+  title: View client
+edit client:
+  title: Edit client

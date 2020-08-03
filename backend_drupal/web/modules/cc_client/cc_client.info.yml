@@ -1,0 +1,7 @@
+name: Client
+type: module
+description: 'Provides a client entity.'
+package: Custom
+core: 8.x
+core_version_requirement: ^8 || ^9
+configure: entity.client.settings
