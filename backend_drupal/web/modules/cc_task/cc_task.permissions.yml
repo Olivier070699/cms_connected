@@ -1,0 +1,13 @@
+administer task:
+  title: 'Administer task settings'
+  restrict access: true
+access task overview:
+  title: 'Access task overview page'
+delete task:
+  title: Delete task
+create task:
+  title: Create task
+view task:
+  title: View task
+edit task:
+  title: Edit task
