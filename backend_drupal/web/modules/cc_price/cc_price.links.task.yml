@@ -1,0 +1,22 @@
+entity.price.settings:
+  title: Settings
+  route_name: entity.price.settings
+  base_route: entity.price.settings
+entity.price.view:
+  title: View
+  route_name: entity.price.canonical
+  base_route: entity.price.canonical
+entity.price.edit_form:
+  title: Edit
+  route_name: entity.price.edit_form
+  base_route: entity.price.canonical
+entity.price.delete_form:
+  title: Delete
+  route_name: entity.price.delete_form
+  base_route: entity.price.canonical
+  weight: 10
+entity.price.collection:
+  title: Price
+  route_name: entity.price.collection
+  base_route: system.admin_content
+  weight: 10

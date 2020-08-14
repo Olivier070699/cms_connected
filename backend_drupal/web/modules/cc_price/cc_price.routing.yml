@@ -1,0 +1,7 @@
+entity.price.settings:
+  path: 'admin/structure/price'
+  defaults:
+    _form: '\Drupal\cc_price\Form\PriceSettingsForm'
+    _title: 'Price'
+  requirements:
+    _permission: 'administer price'

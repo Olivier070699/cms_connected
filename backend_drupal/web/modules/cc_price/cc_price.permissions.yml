@@ -1,0 +1,5 @@
+administer price:
+  title: 'Administer price settings'
+  restrict access: true
+access price overview:
+  title: 'Access price overview page'

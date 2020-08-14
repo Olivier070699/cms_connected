@@ -1,0 +1,10 @@
+entity.price.settings:
+  title: Price
+  description: Configure a Price entity type
+  route_name:  entity.price.settings
+  parent: system.admin_structure
+entity.price.collection:
+  title: Prices
+  description: List of prices
+  route_name: entity.price.collection
+  parent: system.admin_content
