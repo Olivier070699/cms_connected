@@ -26,6 +26,7 @@
         "drupal/simple_oauth": "^4.5",
         "drupal/time_field": "^1.13",
         "drupal/twig_debugger": "^1.1",
+        "drupal/views_data_export": "^1.0",
         "drush/drush": "^9.7.1 | ^10.0.0",
         "vlucas/phpdotenv": "^4.0",
         "webflo/drupal-finder": "^1.0.0",

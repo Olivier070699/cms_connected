@@ -1,0 +1,18 @@
+body {
+  background-color: #EFF7F7;
+}
+
+main {
+  width: calc(100% - 200px);
+  margin-left: 200px;
+}
+
+main section {
+  margin: 10px;
+}
+
+.block-views {
+  background: white;
+  padding: 1px 10px;
+  border: solid 4px #EEF4F4;
+}
