@@ -1,5 +1,5 @@
 body{
-    background-color: #EFF7F7;
+    background-color: #F2F4F7;
 }
 
 main{
@@ -11,8 +11,21 @@ main{
     }
 }
 
-.block-views{
-    background: white;
-    padding: 1px 10px;
-    border: solid 4px #EEF4F4;
+.views-element-container{
+    background-color: #ffffff;
+    padding: 70px 25px;
+    margin-top: 10px;
+
+    .view-header a{
+        text-decoration: none;
+        text-transform: uppercase;
+        color: #fff;
+        background-color: #fa5c7c;
+        border-color: #fa5c7c;
+        box-shadow: 0 2px 6px 0 rgba(250,92,124,.5);
+        padding: 10px;
+        position: absolute;
+        right: 0;
+        top: -50px;
+    }
 }

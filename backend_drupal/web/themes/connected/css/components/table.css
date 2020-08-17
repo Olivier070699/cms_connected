@@ -6,19 +6,28 @@ table {
 }
 
 table tr {
-  border-bottom: 0.5px solid #F8F7FF;
+  border-bottom: 0.5px solid #F2F5F9;
 }
 
 table th {
-  background-color: #6D7AE0;
-  color: white;
-  padding: 10px;
+  background-color: #F1F3FA;
+  color: #6D767E;
+  padding: 25px 10px;
 }
 
 table th a {
-  color: white;
+  color: #6D767E;
+  text-decoration: none;
+  border-bottom: solid 0.5px #6D767E;
 }
 
 table td {
-  padding: 10px;
+  color: #6D767E;
+  padding: 25px 10px;
+}
+
+table td a {
+  color: #6D767E;
+  text-decoration: none;
+  border-bottom: solid 0.5px #6D767E;
 }
