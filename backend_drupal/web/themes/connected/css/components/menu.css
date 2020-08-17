@@ -1,35 +1,58 @@
 .region-primary-menu {
   background-color: #313A46;
-  height: 100vh;
+  min-height: 100vh;
   width: 200px;
+  position: fixed;
+}
+
+.region-primary-menu #block-sitebranding {
+  margin-top: 40px;
+}
+
+.region-primary-menu .content {
   display: flex;
   justify-content: center;
   align-items: center;
   position: fixed;
+  flex-wrap: wrap;
+  min-height: 100vh;
 }
 
-.region-primary-menu ul {
+.region-primary-menu .content ul {
   padding: 0;
-  margin: 0;
+  margin: -130px 0 0 0;
   width: 200px;
 }
 
-.region-primary-menu li {
-  margin: 15px 0;
-  width: 100%;
-  padding: 20px 0px 20px 20px;
-  color: #818EA0;
+.region-primary-menu .content ul li:last-child {
+  background-color: #4e5bf2;
 }
 
-.region-primary-menu li:hover {
-  color: #ffffff;
-}
-
-.region-primary-menu ul.menu a.is-active {
+.region-primary-menu .content ul li:last-child a {
   color: #ffffff !important;
 }
 
-.region-primary-menu a {
+.region-primary-menu .content ul li:last-child a:hover {
+  opacity: 0.8;
+}
+
+.region-primary-menu .content li {
+  margin: 15px 0;
+  width: 100%;
+  padding: 20px 0px;
+  color: #818EA0;
+}
+
+.region-primary-menu .content ul.menu a.is-active {
+  color: #ffffff !important;
+}
+
+.region-primary-menu .content a {
+  margin-left: 20px;
   color: #818EA0 !important;
   text-decoration: none;
+}
+
+.region-primary-menu .content a:hover {
+  color: #ffffff !important;
 }

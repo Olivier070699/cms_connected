@@ -13,6 +13,8 @@ table th {
   background-color: #F1F3FA;
   color: #6D767E;
   padding: 25px 10px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800;
 }
 
 table th a {
@@ -24,10 +26,11 @@ table th a {
 table td {
   color: #6D767E;
   padding: 25px 10px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 100;
 }
 
 table td a {
-  color: #6D767E;
+  color: #fa5c7c;
   text-decoration: none;
-  border-bottom: solid 0.5px #6D767E;
 }
