@@ -1,5 +1,5 @@
 import React, { Component, createRef } from 'react'
-import { Container, Card, CardContent, TextField, Button, Grid, FormControlLabel, Checkbox } from '@material-ui/core'
+import { Container, Card, CardContent, TextField, Button, Grid, FormControlLabel, Checkbox, Typography } from '@material-ui/core'
 
 export class AddTask extends Component {
     
@@ -16,7 +16,9 @@ export class AddTask extends Component {
 
     // LOG CHANGES FORM
     onChange = (e) => {
-        this.setState({ [e.target.name]: e.target.value })
+        const name = e.target.name
+        const value = e.target.value
+        this.props.onChangeTask(name, value)
     }
 
     // LOG CHANGES CHECKBOX
@@ -27,11 +29,12 @@ export class AddTask extends Component {
     // SUBMIT FORM
     onSubmit = (e) => {
         e.preventDefault()
+        this.props.taskSubmit()
     }
     
     render() {
         return (
-            <Container maxWidth='lg' lg={6} spacing={3}>
+            <Container maxWidth='sm' lg={6} spacing={3}>
                 <Card>
                     <CardContent>
                         <form onSubmit={this.onSubmit}>
@@ -58,18 +61,6 @@ export class AddTask extends Component {
                                 </Grid>
 
                                 <Grid item xs={12}>
-                                    <TextField type="number" name="transport" label="Transport (aantal kilometers)" variant="outlined" fullWidth onChange={this.onChange} />
-                                </Grid>    
-
-                                <Grid item xs={12}>
-                                    <TextField type="number" name="activiteit" label="Uitgevoerde activiteiten" variant="outlined" fullWidth multiline rows={4} onChange={this.onChange} />
-                                </Grid>   
-                                
-                                <Grid item xs={12}>
-                                    <TextField type="number" name="materiaal" label="Gebruikte materialen" variant="outlined" fullWidth multiline rows={4} onChange={this.onChange} />
-                                </Grid>  
-
-                                <Grid item xs={12}>
                                     <FormControlLabel
                                         control={
                                         <Checkbox
@@ -83,13 +74,35 @@ export class AddTask extends Component {
                                     />
                                 </Grid>
                                 
-                                <Grid item xs={6} >
-                                    <TextField ref={this.uurtarief} type="number" name="uurtarief" label="Uurtarief (€)" variant="outlined" fullWidth onChange={this.onChange} />
-                                </Grid>
+                                {this.state.freelance &&
+                                <>
+                                    <Grid item xs={12} >
+                                        <TextField ref={this.uurtarief} type="number" name="uurtarief" label="Uurtarief (€)" variant="outlined" fullWidth onChange={this.onChange} />
+                                    </Grid>
 
-                                <Grid item xs={6} >
-                                    <TextField ref={this.transporttarief} type="number" name="transportkost" label="Transportkost (€)" variant="outlined" fullWidth onChange={this.onChange} />
-                                </Grid>
+                                    <Grid item xs={12} >
+                                        <TextField ref={this.transporttarief} type="number" name="transportkost" label="Transportkost (€)" variant="outlined" fullWidth onChange={this.onChange} />
+                                    </Grid>  
+                                </>   
+                                }
+
+                                <Grid item xs={12}>
+                                    <TextField type="number" name="transport" label="Transport (aantal kilometers)" variant="outlined" fullWidth onChange={this.onChange} />
+                                </Grid>    
+
+                                <Grid item xs={12}>
+                                    <TextField type="number" name="activiteit" label="Uitgevoerde activiteiten" variant="outlined" fullWidth multiline rows={4} onChange={this.onChange} />
+                                </Grid>   
+                                
+                                <Grid item xs={12}>
+                                    <TextField type="number" name="materiaal" label="Gebruikte materialen" variant="outlined" fullWidth multiline rows={4} onChange={this.onChange} />
+                                </Grid> 
+                                
+                                {this.props.error &&
+                                    <Grid item xs={12}>    
+                                        <Typography>{this.props.error}</Typography>
+                                    </Grid> 
+                                }
                                 
                                 <Grid item xs={12}><Button fullWidth variant="contained" onClick={this.onSubmit}>Save</Button></Grid>
                             </Grid>

@@ -1,5 +1,5 @@
-import AddTask from './dashboard/AddTask'
+import Index from './dashboard/Index'
 
 export {
-    AddTask
+    Index
 }

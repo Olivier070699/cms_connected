@@ -1,3 +1,39 @@
 .hide{
   display: none;
 }
+
+.pointer-events-none{
+  pointer-events: none;
+}
+
+.logo{
+  height: 36px;
+  position: fixed !important;
+  left: 1em;
+  top: 1em; 
+}
+
+.position-logout-btn{
+  position: fixed !important;
+  right: 1em;
+  top: 1em; 
+  z-index: 99;
+}
+
+@media only screen and (max-width: 770px) {
+  
+  .logo{
+    position: absolute !important;
+    left: 23px;
+  }
+  
+  .position-logout-btn{
+    position: absolute !important;
+    right: 23px;
+  }
+  
+  .MuiContainer-root {
+    margin-top: calc(51px + 1em);
+  }
+
+}

@@ -24,6 +24,8 @@
         "drupal/core": "^8.8.0",
         "drupal/core-composer-scaffold": "^8.8.0",
         "drupal/fontawesome": "^2.17",
+        "drupal/jwt": "^1.0@beta",
+        "drupal/restui": "1.18",
         "drupal/simple_oauth": "^4.5",
         "drupal/time_field": "^1.13",
         "drupal/twig_debugger": "^1.1",
