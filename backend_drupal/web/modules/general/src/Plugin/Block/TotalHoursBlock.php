@@ -49,9 +49,9 @@ class TotalHoursBlock extends BlockBase {
     $total = $totalWorkTransport + $totalWorkHoursPrice;
 
 
-    return [
-      'total' => $total,
-    ];
+    //return [
+      //'total' => $total,
+    //];
   }
 
 }

@@ -45,3 +45,7 @@ main section {
   top: -50px;
   font-family: 'Nunito', sans-serif;
 }
+
+.feed-icon {
+  display: none !important;
+}

@@ -36,13 +36,35 @@
   'block-' ~ plugin_id|clean_class,
 ]
 %}
-<h1>HeLLLLO</h1>
-      {{ content.total[0] }}
 
 
 <div{{ attributes.addClass(classes) }}>
   {% block content %}
     <div{{ content_attributes.addClass('content') }}>
+      <div class="views-element-container contextual-region block block-views block-views-blockproject-tasks-block-1" id="block-views-block-project-tasks-block-1">
+        <h2>Te betalen</h2>
+        <div class="contextual-region view view-project-tasks view-id-project_tasks view-display-id-block_1 js-view-dom-id-320720f234cbc2c278db7f9c982157c668019efb49de9cf86e65b4d8002ee771">
+          <div class="view-content">
+            <table class="views-table views-view-table cols-8">
+              <thead>
+              <tr>
+                <th class="views-field" scope="col">Prijs gepresteerde uren</th>
+                <th class="views-field" scope="col">Prijs van de gereden kilometers</th>
+                <th class="views-field" scope="col">Totale prijs</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr class="views-field">
+                <td>€{{ content.work }}</td>
+                <td>€{{ content.transport }}</td>
+                <td>€{{ content.total }}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
     </div>
   {% endblock %}
 </div>
