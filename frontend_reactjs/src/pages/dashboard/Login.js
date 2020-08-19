@@ -1,8 +1,15 @@
 import React, { Component } from 'react'
 import { Container, Card, CardContent, TextField, Button, Grid, Typography } from '@material-ui/core'
 
+import { getToken, userData} from '../../services/Authentication'
+
 export class Login extends Component {
     
+    componentDidMount = () => {
+        const tokenRaw = getToken()
+        console.log(tokenRaw)
+    }
+      
     // ON FORM CHANGE
     onChange = (e) => {
         const name = e.target.name

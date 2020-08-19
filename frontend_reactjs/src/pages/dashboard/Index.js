@@ -29,7 +29,7 @@ export class Index extends Component {
 
     // ON SUBMIT LOGOUT
     logout = () => {
-        this.setState({ loggedIn: false })
+        this.setState({ loggedIn: false, error: false })
     }
 
     // ON SUBMIT TASK
