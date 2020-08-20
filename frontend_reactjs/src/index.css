@@ -20,6 +20,15 @@
   z-index: 99;
 }
 
+
+.name-title{
+  text-transform: capitalize;
+}
+
+.form-task{
+  margin-top: 30px;
+}
+
 @media only screen and (max-width: 770px) {
   
   .logo{

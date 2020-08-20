@@ -1,6 +1,9 @@
 import React, { Component, createRef } from 'react'
 import { Container, Card, CardContent, TextField, Button, Grid, FormControlLabel, Checkbox, Typography } from '@material-ui/core'
 
+import { getFirstAndLastDayOfTheWeek } from '../../helpers/Data'
+import { getUserWorkedHours } from '../../services/Task'
+
 export class AddTask extends Component {
     
     // CREATE REFS
@@ -11,7 +14,19 @@ export class AddTask extends Component {
     }
 
     state = {
-        freelance: false
+        freelance: false,
+        workedHours: false,
+    }
+
+    componentDidMount = async () => {
+        const dateResp = getFirstAndLastDayOfTheWeek()
+        const firstday = dateResp[0]
+        const lastday = dateResp[1]
+        
+        const workedHours = await getUserWorkedHours(this.props.userId, this.props.token, firstday, lastday)
+        if (workedHours !== 0) {
+            this.setState({ workedHours })
+        }
     }
 
     // LOG CHANGES FORM
@@ -37,7 +52,11 @@ export class AddTask extends Component {
             <Container maxWidth='sm' lg={6} spacing={3}>
                 <Card>
                     <CardContent>
-                        <form onSubmit={this.onSubmit}>
+                        <Typography>Hallo <span className="name-title">{this.props.username}</span></Typography>
+                        {this.state.workedHours &&
+                            <Typography>Aantal gelogde uren deze week: {this.state.workedHours} uur</Typography>
+                        }
+                        <form className="form-task" onSubmit={this.onSubmit}>
                             <Grid container ls={6} spacing={3}>
 
                                 <Grid item xs={12}>

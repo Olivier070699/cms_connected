@@ -1,10 +1,11 @@
 import React, { Component } from "react"
 import { Button } from "@material-ui/core"
+import Cookies from "universal-cookie";
 
 import AddTask from "./AddTask"
 import Login from "./Login"
 
-import { getToken } from '../../services/Authentication'
+import { getToken, getUser } from "../../services/Authentication"
 
 export class Index extends Component {
     
@@ -14,25 +15,58 @@ export class Index extends Component {
         error: false
     }
 
+    // CHECK IF LOGGED IN
+    componentDidMount = () => {
+        const cookies = new Cookies()
+        const username = cookies.get("username")
+        if (username) {
+            this.setState({
+                username,
+                token: cookies.get("token"),
+                user: cookies.get("userId"),
+                loggedIn: true,
+            })
+        }
+    }
+
     // ON CHANGE FORM
     onChange = (name, value) => {
         this.setState({ [name]: value})
     }
 
     // ON SUBMIT LOGIN
-    login = async() => {
+    login = async () => {
         const elements = ["username", "password"]
         const resp = this.validateForm(elements)
         if (resp) {
             const token = await getToken(this.state.username, this.state.password)
-            this.setState({ token })
-            // this.setState({ loggedIn: true, error: false })
-            // this.clearState(elements)
+            const user = await getUser(token)
+            
+            const cookies = new Cookies()
+            cookies.set("token", token)
+            cookies.set("userId", user)
+            cookies.set("username", this.state.username)
+            
+            if (token && user) {
+                this.setState({
+                    token,
+                    user,
+                    loggedIn: true,
+                    error: false
+                })
+            }
         }
     }
 
     // ON SUBMIT LOGOUT
     logout = () => {
+        const cookies = new Cookies()
+        cookies.remove("token")
+        cookies.remove("userId")
+        cookies.remove("username")
+
+        const elements = ["token", "user"]
+        this.clearState(elements)
         this.setState({ loggedIn: false, error: false })
     }
 
@@ -65,10 +99,10 @@ export class Index extends Component {
         return (
             <>
                 <img className="pointer-events-none logo" src="/logo.svg" alt="logo"/>
-                {this.state.loggedIn &&
+                {this.state.loggedIn && this.state.token && this.state.user && 
                 <>
                 <Button onClick={this.logout} className="position-logout-btn" variant="contained" color="default">Logout</Button>
-                <AddTask taskSubmit={this.taskSubmit} onChangeTask={this.onChange} error={this.state.error}/>
+                    <AddTask taskSubmit={this.taskSubmit} onChangeTask={this.onChange} error={this.state.error} token={this.state.token} userId={this.state.user} username={this.state.username}/>
                 </>
                 }
                 {!this.state.loggedIn &&
