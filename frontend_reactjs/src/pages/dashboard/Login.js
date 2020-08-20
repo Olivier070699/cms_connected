@@ -25,11 +25,11 @@ export class Login extends Component {
                         <Grid container ls={6} spacing={3}>
 
                             <Grid item xs={12}>
-                                <TextField type="text" name="username" label="Username" variant="outlined" fullWidth onChange={this.onChange} />
+                                <TextField type="text" name="username" label="Gebruikersnaam" variant="outlined" fullWidth onChange={this.onChange} />
                             </Grid>
                                 
                             <Grid item xs={12}>
-                                <TextField type="password" name="password" label="Password" variant="outlined" fullWidth onChange={this.onChange} />
+                                <TextField type="password" name="password" label="Wachtwoord" variant="outlined" fullWidth onChange={this.onChange} />
                             </Grid>
                             
                             {this.props.error &&

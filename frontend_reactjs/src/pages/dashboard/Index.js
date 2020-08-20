@@ -41,13 +41,13 @@ export class Index extends Component {
         if (resp) {
             const token = await getToken(this.state.username, this.state.password)
             const user = await getUser(token)
-            
-            const cookies = new Cookies()
-            cookies.set("token", token)
-            cookies.set("userId", user)
-            cookies.set("username", this.state.username)
-            
+
             if (token && user) {
+                const cookies = new Cookies()
+                cookies.set("token", token)
+                cookies.set("userId", user)
+                cookies.set("username", this.state.username)
+                
                 this.setState({
                     token,
                     user,

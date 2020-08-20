@@ -145,7 +145,7 @@ export class AddTask extends Component {
                                         </Grid> 
                                     }
                                     
-                                    <Grid item xs={12}><Button fullWidth variant="contained" onClick={this.onSubmit}>Save</Button></Grid>
+                                    <Grid item xs={12}><Button fullWidth variant="contained" onClick={this.onSubmit}>Voeg taak toe</Button></Grid>
                                 </Grid>
                             </form>
                         }
