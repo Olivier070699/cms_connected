@@ -72,8 +72,13 @@ export class Index extends Component {
 
     // ON SUBMIT TASK
     taskSubmit = () => {
-        const elements = ["datum", "startuur", "stopuur", "pauze_startuur", "pauze_stopuur", "transport", "activiteit", "materiaal", "uurtarief", "transportkost"]
-        this.validateForm(elements)
+        const elements = ["datum", "startuur", "stopuur", "transport", "activiteit", "materiaal", "transportkost"]
+        const resp = this.validateForm(elements)
+        if (resp) {
+            this.setState({
+                error: false,
+            })
+        }
         this.clearState(elements)
     }
 

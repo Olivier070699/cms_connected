@@ -87,3 +87,10 @@ export const getTotalHours = async (userTasks) => {
     }
     return workedHours
 }
+
+
+
+// CREATE NEW TASK
+export const newTask = () => {
+    
+}
