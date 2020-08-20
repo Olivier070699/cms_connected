@@ -4,11 +4,6 @@ import { Container, Card, CardContent, TextField, Button, Grid, Typography } fro
 import { getToken, userData} from '../../services/Authentication'
 
 export class Login extends Component {
-    
-    componentDidMount = () => {
-        const tokenRaw = getToken()
-        console.log(tokenRaw)
-    }
       
     // ON FORM CHANGE
     onChange = (e) => {

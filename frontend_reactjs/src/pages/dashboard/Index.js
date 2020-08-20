@@ -4,6 +4,8 @@ import { Button } from "@material-ui/core"
 import AddTask from "./AddTask"
 import Login from "./Login"
 
+import { getToken } from '../../services/Authentication'
+
 export class Index extends Component {
     
     // START STATE
@@ -18,12 +20,14 @@ export class Index extends Component {
     }
 
     // ON SUBMIT LOGIN
-    login = () => {
+    login = async() => {
         const elements = ["username", "password"]
         const resp = this.validateForm(elements)
         if (resp) {
-            this.setState({ loggedIn: true, error: false })
-            this.clearState(elements)
+            const token = await getToken(this.state.username, this.state.password)
+            this.setState({ token })
+            // this.setState({ loggedIn: true, error: false })
+            // this.clearState(elements)
         }
     }
 
