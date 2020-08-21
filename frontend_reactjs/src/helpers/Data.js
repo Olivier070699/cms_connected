@@ -15,6 +15,13 @@ export const getCurrentTime = () => {
     return time
 }
 
+export const getTimestamp = () => {
+    const today = getCurrentDate()
+    const time = getCurrentTime()
+    const timestamp = Date.parse(`${today} ${time}`)
+    return timestamp
+}
+
 // GET FIRST AND LAST DAY OF THE WEEK
 export const getFirstAndLastDayOfTheWeek = () => {
     const curr = new Date()

@@ -8,6 +8,8 @@ import Login from "./Login"
 import { getToken, getUser } from "../services/Authentication"
 import { newTask } from "../services/Task"
 
+import { getTimestamp } from "../helpers/Data"
+
 export class Index extends Component {
     
     // START STATE
@@ -21,9 +23,19 @@ export class Index extends Component {
     componentDidMount = () => {
         const cookies = new Cookies()
         const username = cookies.get("username")
-        if (username) {
+        
+        const settedTimestamp = cookies.get("timestamp")
+
+        if (username && settedTimestamp) {
+            const currentTimestamp = getTimestamp()
+            const timeDifference = currentTimestamp - settedTimestamp
+            if (timeDifference > 3000000) {
+                this.logout()
+                return
+            }
+            
             this.setState({
-                username,
+                username: cookies.get("username"),
                 token: cookies.get("token"),
                 user: cookies.get("userId"),
                 loggedIn: true,
@@ -41,6 +53,7 @@ export class Index extends Component {
         const elements = ["username", "password"]
         const resp = this.validateForm(elements)
         if (resp) {
+            const timestamp = getTimestamp()
             const token = await getToken(this.state.username, this.state.password)
             const user = await getUser(token)
 
@@ -49,6 +62,7 @@ export class Index extends Component {
                 cookies.set("token", token)
                 cookies.set("userId", user)
                 cookies.set("username", this.state.username)
+                cookies.set("timestamp", timestamp)
                 
                 this.setState({
                     token,
@@ -66,6 +80,7 @@ export class Index extends Component {
         cookies.remove("token")
         cookies.remove("userId")
         cookies.remove("username")
+        cookies.remove("timestamp")
 
         const elements = ["token", "user"]
         this.clearState(elements)
@@ -101,10 +116,23 @@ export class Index extends Component {
                 elementsObject[element] = this.state[element]
             }
 
-            console.log(elementsObject)
+            let timeArray = ["startuur", "stopuur"]
+            if (this.state.pauze_startuur && this.state.pauze_stopuur) {
+                timeArray.push("pauze_startuur", "pauze_stopuur")
+            }
+
+            for (const time of timeArray) {
+                const currentTime = this.state[time]
+                const split = currentTime.split(":")
+                const hour = split[0] * 3600
+                const min = split[1] * 60
+                const seconds = hour + min
+
+                elementsObject[time] = seconds
+            }
             const taskResp = await newTask(this.state.token, this.state.user, elementsObject)
-            console.log(taskResp)
-            // IF TRUE MELDING DABEI
+            this.clearState(elements)
+            document.getElementById('formRef').reset()
         }
     }
 
@@ -124,6 +152,7 @@ export class Index extends Component {
         for (const element of elements) {
             this.setState({ [element]: "" })
         }
+        this.setState({ freelance: false, })
     }
     
     render() {

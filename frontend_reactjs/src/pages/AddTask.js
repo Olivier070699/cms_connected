@@ -52,6 +52,7 @@ export class AddTask extends Component {
     onSubmit = (e) => {
         e.preventDefault()
         this.props.taskSubmit()
+        this.componentDidMount()
     }
     
     render() {
@@ -64,7 +65,7 @@ export class AddTask extends Component {
                             <Typography>Uw uren deze week: {this.state.workedHours} uur</Typography>
                         }
                         {this.state.projects &&
-                            <form className="form-task" onSubmit={this.onSubmit}>
+                            <form id="formRef" className="form-task" onSubmit={this.onSubmit}>
                                 <Grid container ls={6} spacing={3}>
 
                                     <Grid item xs={12}>

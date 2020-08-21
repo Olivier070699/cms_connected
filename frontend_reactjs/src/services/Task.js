@@ -93,6 +93,7 @@ export const getTotalHours = async (userTasks) => {
 // CREATE NEW TASK
 export const newTask = async (token, userId, elements) => {
     let response
+
     await fetch('http://localhost/jsonapi/task/task', {
       method: "POST",
       headers: {
@@ -106,14 +107,14 @@ export const newTask = async (token, userId, elements) => {
             "type": "task--task",
             "attributes": {
                 "field_datum": elements.datum,
-                "field_einduur": 79200,
+                "field_einduur": elements.stopuur,
                 "field_gebruikte_materialen": elements.materiaal,
                 "field_freelancer": elements.freelance,
                 "field_pauze": {
-                    "from": 72000,
-                    "to": 75600
+                    "from": elements.pauze_startuur,
+                    "to": elements.pauze_stopuur
                 },
-                "field_startuur": 68400,
+                "field_startuur": elements.startuur,
                 "field_transport": elements.transport,
                 "field_transportkost": elements.transportkost,
                 "field_uitgevoerde_activiteiten": elements.activiteit,
