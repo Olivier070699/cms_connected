@@ -3,6 +3,7 @@
 namespace Drupal\general\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
+use Drupal\Core\Datetime\Element\Datetime;
 use Drupal\views\Views;
 
 /**
@@ -35,6 +36,7 @@ class ClientProjectTaskBlock extends BlockBase {
     $totalAmount = 0;
 
     foreach($hours_result as $hour){
+
       $entity = $hour->_entity;
       $start = $entity->get('field_startuur')->getString();
       $eind = $entity->get('field_einduur')->getString();
@@ -51,6 +53,12 @@ class ClientProjectTaskBlock extends BlockBase {
 
 
       $totalWorkHours = ($eind - $start - $pauzeDuur) / 3600;
+
+      $extraHoures = 0;
+      if($totalWorkHours > 8){
+        $extraHoures = $totalWorkHours - 8;
+      }
+
       $pauzeDuur = 0;
       $transportHours = $entity->get('field_transport')->getString();
 
@@ -61,7 +69,17 @@ class ClientProjectTaskBlock extends BlockBase {
         $saleryPrice = $entity->get('field_prijs')->getString();
       }
 
-      $totalWorkHoursPrice =  $totalWorkHours * $saleryPrice;
+      $date = $entity->get('field_datum')->getString();
+      $dayOfWeek = date("l", strtotime($date));
+
+      $totalWorkHoursPrice =  $totalWorkHours * $saleryPrice + $extraHoures * ($saleryPrice * 1.2);
+      if($dayOfWeek == 'Saturday'){
+        $totalWorkHoursPrice = $totalWorkHoursPrice * 1.5;
+      }
+
+      if($dayOfWeek == 'Sunday'){
+        $totalWorkHoursPrice = $totalWorkHoursPrice * 2;
+      }
       $totalWorkTransportPrice =   $transportHours * $transportPrice;
       $totalWorkTransport = $totalWorkTransport + $totalWorkTransportPrice;
       $totalWorkPrice = $totalWorkPrice + $totalWorkHoursPrice;
