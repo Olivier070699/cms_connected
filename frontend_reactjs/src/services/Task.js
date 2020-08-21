@@ -91,6 +91,51 @@ export const getTotalHours = async (userTasks) => {
 
 
 // CREATE NEW TASK
-export const newTask = () => {
-    
+export const newTask = async (token, userId, elements) => {
+    let response
+    await fetch('http://localhost/jsonapi/task/task', {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/vnd.api+json',
+        'Accept': 'application/x-www-form-urlencoded',
+        'Authorization': `Bearer ${token}`,
+        'X-CSRF-Token': 'Ee44QjU5CbJ0qV-Yya7m4Ru_ny0aXCb7wS5Y_JdBV1k'
+      },
+      body: JSON.stringify({
+        "data": {
+            "type": "task--task",
+            "attributes": {
+                "field_datum": elements.datum,
+                "field_einduur": 79200,
+                "field_gebruikte_materialen": elements.materiaal,
+                "field_freelancer": elements.freelance,
+                "field_pauze": {
+                    "from": 72000,
+                    "to": 75600
+                },
+                "field_startuur": 68400,
+                "field_transport": elements.transport,
+                "field_transportkost": elements.transportkost,
+                "field_uitgevoerde_activiteiten": elements.activiteit,
+                "field_prijs": elements.uurtarief
+            },
+            "relationships": {
+                    "field_project": {
+                        "data": {
+                            "type": "project--project",
+                            "id": elements.projectId
+                        }
+                    }
+                }
+        }
+    })
+    })
+    try {
+        response = true
+    } catch (error) {
+        response = error
+    }
+    return response
 }
+
+// TASK TIMESTAMP?

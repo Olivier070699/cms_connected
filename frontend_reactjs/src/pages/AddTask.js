@@ -2,10 +2,10 @@ import React, { Component, createRef } from 'react'
 import { Container, Card, CardContent, TextField, Button, Grid, FormControlLabel, Checkbox, Typography, FormControl, InputLabel, Select } from '@material-ui/core'
 import ProjectNameOption from './components/ProjectNameOption' 
 
-import { getFirstAndLastDayOfTheWeek } from '../../helpers/Data'
+import { getFirstAndLastDayOfTheWeek } from '../helpers/Data'
 
-import { getUserWorkedHours } from '../../services/Task'
-import { getAllProjectDataForSelectedList } from '../../services/Project'
+import { getUserWorkedHours } from '../services/Task'
+import { getAllProjectDataForSelectedList } from '../services/Project'
 
 export class AddTask extends Component {
     
@@ -45,6 +45,7 @@ export class AddTask extends Component {
     // LOG CHANGES CHECKBOX
     onChangeCheckBox = (e) => {
         this.setState({ [e.target.name]: e.target.checked })
+        this.props.onChangeTask(e.target.name, e.target.checked)
     }
 
     // SUBMIT FORM
@@ -70,7 +71,7 @@ export class AddTask extends Component {
                                         <FormControl variant='outlined' fullWidth>
                                             <InputLabel htmlFor='outlined-age-native-simple'>Projectnaam</InputLabel>
                                                 <Select
-                                                    native name='clientKey'
+                                                    native name='projectId'
                                                     onChange={this.onChange}
                                                     required
                                                     fullWidth
@@ -141,7 +142,7 @@ export class AddTask extends Component {
                                     
                                     {this.props.error &&
                                         <Grid item xs={12}>    
-                                            <Typography>{this.props.error}</Typography>
+                                            <Typography className="error">{this.props.error}</Typography>
                                         </Grid> 
                                     }
                                     
