@@ -1,5 +1,5 @@
 # cms_connected
 
-Backend - Drupal
-Frontend - ReactJS
+Backend: Drupal -
+Frontend: ReactJS -
 Olivier Decock
