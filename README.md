@@ -2,4 +2,5 @@
 
 Backend: Drupal -
 Frontend: ReactJS -
+Style: Sass & Material UI -
 Olivier Decock
