@@ -33,19 +33,24 @@ export class Index extends Component {
                 this.logout()
                 return
             }
-            
-            this.setState({
-                username: cookies.get("username"),
-                token: cookies.get("token"),
-                user: cookies.get("userId"),
-                loggedIn: true,
-            })
+            this.updateStartState()
         }
+    }
+
+    // UPDATE START STATE
+    updateStartState = () => {
+        const cookies = new Cookies()
+        this.setState({
+            username: cookies.get("username"),
+            token: cookies.get("token"),
+            user: cookies.get("userId"),
+            loggedIn: true,
+        })
     }
 
     // ON CHANGE FORM
     onChange = (name, value) => {
-        this.setState({ [name]: value})
+        this.setState({ [name]: value })
     }
 
     // ON SUBMIT LOGIN
@@ -132,7 +137,6 @@ export class Index extends Component {
             }
             const taskResp = await newTask(this.state.token, this.state.user, elementsObject)
             this.clearState(elements)
-            document.getElementById('formRef').reset()
         }
     }
 

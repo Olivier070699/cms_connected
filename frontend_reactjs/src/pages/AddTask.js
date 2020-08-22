@@ -9,16 +9,10 @@ import { getAllProjectDataForSelectedList } from '../services/Project'
 
 export class AddTask extends Component {
     
-    // CREATE REFS
-    constructor() {
-        super()
-        this.uurtarief = createRef()
-        this.transporttarief = createRef()
-    }
-
     state = {
         freelance: false,
         workedHours: false,
+        elements: ["projectId", "datum", "startuur", "stopuur", "transport", "activiteit", "materiaal", "pauze_startuur", "pauze_stopuur", "freelance", "uurtarief", "transportkost"]
     }
 
     componentDidMount = async () => {
@@ -53,6 +47,17 @@ export class AddTask extends Component {
         e.preventDefault()
         this.props.taskSubmit()
         this.componentDidMount()
+        this.clearForm()
+    }
+
+    // CLEAR FORM
+    clearForm = () => {
+        const elements = this.state.elements
+        for (const element of elements) {
+            this.setState({ [element]: ""})
+        }
+        
+        this.setState({ freelance: false })
     }
     
     render() {
@@ -72,7 +77,8 @@ export class AddTask extends Component {
                                         <FormControl variant='outlined' fullWidth>
                                             <InputLabel htmlFor='outlined-age-native-simple'>Projectnaam</InputLabel>
                                                 <Select
-                                                    native name='projectId'
+                                                    native 
+                                                    name='projectId'
                                                     onChange={this.onChange}
                                                     required
                                                     fullWidth
@@ -84,23 +90,23 @@ export class AddTask extends Component {
                                     </Grid>
 
                                     <Grid item xs={12}>
-                                        <TextField type="date" name="datum" label="Datum" variant="outlined" fullWidth InputLabelProps={{ shrink: true, }} onChange={this.onChange} />
+                                        <TextField value={this.state.datum} type="date" name="datum" label="Datum" variant="outlined" fullWidth InputLabelProps={{ shrink: true, }} onChange={this.onChange} />
                                     </Grid>
 
                                     <Grid item xs={6}>
-                                        <TextField type="time" name="startuur" label="Startuur" variant="outlined" fullWidth InputLabelProps={{ shrink: true, }} onChange={this.onChange} />
+                                        <TextField value={this.state.startuur} type="time" name="startuur" label="Startuur" variant="outlined" fullWidth InputLabelProps={{ shrink: true, }} onChange={this.onChange} />
                                     </Grid>
 
                                     <Grid item xs={6}>
-                                        <TextField type="time" name="stopuur" label="Stopuur" variant="outlined" fullWidth InputLabelProps={{ shrink: true, }} onChange={this.onChange} />
+                                        <TextField value={this.state.stopuur} type="time" name="stopuur" label="Stopuur" variant="outlined" fullWidth InputLabelProps={{ shrink: true, }} onChange={this.onChange} />
                                     </Grid>
 
                                     <Grid item xs={6}>
-                                        <TextField type="time" name="pauze_startuur" label="Pauze startuur" variant="outlined" fullWidth InputLabelProps={{ shrink: true, }} onChange={this.onChange} />
+                                        <TextField value={this.state.pauze_startuur} type="time" name="pauze_startuur" label="Pauze startuur" variant="outlined" fullWidth InputLabelProps={{ shrink: true, }} onChange={this.onChange} />
                                     </Grid>
 
                                     <Grid item xs={6}>
-                                        <TextField type="time" name="pauze_stopuur" label="Pauze stopuur" variant="outlined" fullWidth InputLabelProps={{ shrink: true, }} onChange={this.onChange} />
+                                        <TextField value={this.state.pauze_stopuur} type="time" name="pauze_stopuur" label="Pauze stopuur" variant="outlined" fullWidth InputLabelProps={{ shrink: true, }} onChange={this.onChange} />
                                     </Grid>
 
                                     <Grid item xs={12}>
@@ -120,25 +126,25 @@ export class AddTask extends Component {
                                     {this.state.freelance &&
                                     <>
                                         <Grid item xs={12} >
-                                            <TextField ref={this.uurtarief} type="number" name="uurtarief" label="Uurtarief (€)" variant="outlined" fullWidth onChange={this.onChange} />
+                                            <TextField value={this.state.uurtarief} type="number" name="uurtarief" label="Uurtarief (€)" variant="outlined" fullWidth onChange={this.onChange} />
                                         </Grid>
 
                                         <Grid item xs={12} >
-                                            <TextField ref={this.transporttarief} type="number" name="transportkost" label="Transportkost (€)" variant="outlined" fullWidth onChange={this.onChange} />
+                                            <TextField value={this.state.transportkost} type="number" name="transportkost" label="Transportkost (€)" variant="outlined" fullWidth onChange={this.onChange} />
                                         </Grid>  
                                     </>   
                                     }
 
                                     <Grid item xs={12}>
-                                        <TextField type="number" name="transport" label="Transport (aantal kilometers)" variant="outlined" fullWidth onChange={this.onChange} />
+                                        <TextField value={this.state.transport} type="number" name="transport" label="Transport (aantal kilometers)" variant="outlined" fullWidth onChange={this.onChange} />
                                     </Grid>    
 
                                     <Grid item xs={12}>
-                                        <TextField type="number" name="activiteit" label="Uitgevoerde activiteiten" variant="outlined" fullWidth multiline rows={4} onChange={this.onChange} />
+                                        <TextField value={this.state.activiteit} type="number" name="activiteit" label="Uitgevoerde activiteiten" variant="outlined" fullWidth multiline rows={4} onChange={this.onChange} />
                                     </Grid>   
                                     
                                     <Grid item xs={12}>
-                                        <TextField type="number" name="materiaal" label="Gebruikte materialen" variant="outlined" fullWidth multiline rows={4} onChange={this.onChange} />
+                                        <TextField value={this.state.materiaal} type="number" name="materiaal" label="Gebruikte materialen" variant="outlined" fullWidth multiline rows={4} onChange={this.onChange} />
                                     </Grid> 
                                     
                                     {this.props.error &&
